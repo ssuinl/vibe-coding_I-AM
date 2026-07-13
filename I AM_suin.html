@@ -69,6 +69,17 @@
     ::-webkit-scrollbar-thumb:hover {
       background: #C84634;
     }
+    /* 스크롤 진행률 표시바 스타일 */
+#scrollProgressBar {
+  position: fixed;
+  top: 64px; /* 기존 네비게이션 바 높이(h-16 = 64px)에 딱 맞춤 */
+  left: 0;
+  width: 0%;
+  height: 4px; /* 너무 두껍지 않고 정갈한 두께 */
+  background-color: #E05A47; /* 내 페이지의 토마토 레드 컬러 */
+  z-index: 49; /* 네비게이션 바(z-50) 바로 밑에 깔리도록 설정 */
+  transition: width 0.1s ease-out;
+}
   </style>
 </head>
 <body class="selection:bg-tomatoRed selection:text-white">
@@ -109,6 +120,8 @@
     <a href="#strength" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">식탁 기록 이유</a>
     <a href="#guestbook" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">방명록</a>
   </div>
+  <!-- 스크롤 진행바 엘리먼트 (Nav 바 바로 밑에 위치) -->
+<div id="scrollProgressBar"></div>
 </nav>
 
   <!-- Hero Section -->
@@ -815,6 +828,24 @@ document.addEventListener('DOMContentLoaded', () => {
       menuIcon.classList.add('fa-bars');
     });
   });
+});
+// 스크롤 진행률 계산 및 바 업데이트 함수
+window.addEventListener('scroll', () => {
+  const progressBar = document.getElementById('scrollProgressBar');
+  
+  // 전체 스크롤 가능한 높이 = 문서 전체 높이 - 현재 뷰포트 창 높이
+  const totalScrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  
+  // 현재 스크롤된 위치
+  const currentScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+  
+  if (totalScrollHeight > 0) {
+    // 백분율 계산 ($current / total * 100$)
+    const scrollPercentage = (currentScrollPosition / totalScrollHeight) * 100;
+    progressBar.style.width = scrollPercentage + '%';
+  } else {
+    progressBar.style.width = '0%';
+  }
 });
   </script>
 </body>
