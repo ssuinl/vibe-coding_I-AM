@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>독립러의 밥상</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- HEIC Image Parser CDN (To convert iPhone HEIC photos on the fly in browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+  
+  <!-- Google Fonts (Noto Sans KR & Gowun Dodum for warm, friendly feeling) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            warmBeige: {
+              DEFAULT: '#F5EBE6',
+              dark: '#EADCD3',
+              light: '#FAF6F4',
+            },
+            tomatoRed: {
+              DEFAULT: '#E05A47',
+              dark: '#C84634',
+              light: '#F8EBE9',
+            },
+            charcoal: '#333333',
+          },
+          fontFamily: {
+            sans: ['Noto Sans KR', 'sans-serif'],
+            hand: ['Gowun Dodum', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #F5EBE6;
+      color: #333333;
+      scroll-behavior: smooth;
+    }
+    .font-hand {
+      font-family: 'Gowun Dodum', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5EBE6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E05A47;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C84634;
+    }
+  </style>
+</head>
+<body class="selection:bg-tomatoRed selection:text-white">
+
+  <!-- Navigation Bar -->
+  <nav class="sticky top-0 z-50 bg-warmBeige/90 backdrop-blur-md border-b border-warmBeige-dark transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2 text-tomatoRed font-bold text-lg md:text-xl font-hand">
+        <span class="text-2xl">🍳</span> 독립러의 밥상
+      </a>
+      <div class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-700">
+        <a href="#intro" class="hover:text-tomatoRed transition-colors">소개</a>
+        <a href="#gallery" class="hover:text-tomatoRed transition-colors">혼자 먹는 밥상</a>
+        <a href="#together" class="hover:text-tomatoRed transition-colors">같이 나누는 식탁</a>
+        <a href="#strength" class="hover:text-tomatoRed transition-colors">식탁 기록 이유</a>
+        <a href="#guestbook" class="hover:text-tomatoRed transition-colors">방명록</a>
+      </div>
+      <div>
+        <a href="#outro" class="bg-tomatoRed hover:bg-tomatoRed-dark text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all shadow-md inline-flex items-center gap-1.5">
+          <i class="fab fa-instagram"></i> 인스타그램
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="intro" class="relative overflow-hidden pt-12 pb-20 md:py-32 flex items-center justify-center">
+    <div class="absolute -top-12 -left-12 w-48 h-48 rounded-full bg-tomatoRed/5 blur-xl"></div>
+    <div class="absolute bottom-10 right-10 w-72 h-72 rounded-full bg-tomatoRed/10 blur-2xl"></div>
+
+    <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+      <span class="inline-flex items-center gap-1 bg-tomatoRed-light text-tomatoRed text-xs md:text-sm font-bold px-3.5 py-1.5 rounded-full mb-6 border border-tomatoRed/20">
+        🏠 1인 가구 라이프레시피
+      </span>
+      
+      <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold text-charcoal leading-tight font-hand mb-6">
+        매번 예쁘게 차리진 못해도,<br class="md:hidden"> 
+        <span class="text-tomatoRed underline decoration-wavy decoration-2 underline-offset-8 font-bold">대충 때우지 않는 내 밥상 기록장</span>
+      </h1>
+      
+      <p class="text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed mb-8 font-light">
+        화려한 레시피나 거창한 플레이팅 없는,<br class="hidden md:inline">
+        혼자서 때로는 같이 챙겨 먹은 솔직한 하루하루의 식탁
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center items-center">
+        <a href="#gallery" class="w-full sm:w-auto bg-tomatoRed hover:bg-tomatoRed-dark text-white font-bold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 text-center">
+          🍳 혼자 먹는 밥상 구경하기
+        </a>
+        <a href="#together" class="w-full sm:w-auto bg-white hover:bg-warmBeige-light text-gray-700 border border-warmBeige-dark font-bold px-8 py-3.5 rounded-xl transition-all text-center">
+          🥂 같이 나누는 식탁 보기
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section Divider -->
+  <div class="w-full overflow-hidden leading-none bg-warmBeige">
+    <svg class="relative block w-full h-[40px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,53.05,22,81.13,32.33,143.12,55,207.13,67.66,273.13,67.66A290.15,290.15,0,0,0,321.39,56.44Z" fill="#faf6f4"></path>
+    </svg>
+  </div>
+
+  <!-- Intro / Storytelling Section -->
+  <section class="py-16 bg-warmBeige-light relative">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-6">
+      <div class="inline-block text-tomatoRed font-bold text-sm tracking-wider uppercase font-hand">Intro ㅡ 우리들의 일상 이야기</div>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-charcoal font-hand leading-snug">
+        인스타그램용 플레이팅 대신, 진짜 현실 집밥
+      </h2>
+      <p class="text-gray-600 leading-relaxed font-light max-w-2xl mx-auto text-sm md:text-base">
+        독립을 시작하면서 다짐했던 건 딱 하나, 밥은 거르지 말자는 것.<br>
+        대충 부쳐낸 계란프라이나 평범한 반찬들로 채운 식탁이지만, 나를 위해 정직하게 차려낸 한 끼들의 기록.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section Divider 2 -->
+  <div class="w-full overflow-hidden leading-none bg-warmBeige-light">
+    <svg class="relative block w-full h-[40px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,53.05,22,81.13,32.33,143.12,55,207.13,67.66,273.13,67.66A290.15,290.15,0,0,0,321.39,56.44Z" fill="#F5EBE6"></path>
+    </svg>
+  </div>
+
+  <!-- Gallery Section: 나의 현실 밥상 (혼자 먹는 밥상) -->
+  <section id="gallery" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-tomatoRed text-xs font-bold uppercase tracking-wider font-hand">혼밥 앨범</span>
+        <h2 class="text-3xl font-extrabold text-charcoal mt-2 mb-3 font-hand">🏡 혼자 먹는 밥상</h2>
+        <p class="text-gray-600 text-sm md:text-base">
+          속 편한 사골국부터 칼칼하게 끓인 국물 요리까지, 오롯이 나를 위해 채우는 혼밥 기록
+        </p>
+      </div>
+
+      <!-- Grid Cards -->
+      <div id="gallery-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card 1 (사골국, 봄동겉절이, 명란, 비엔나소세지, 무말랭이) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-honbab-1" class="w-full h-full">
+              <img src="C38D4F94-11DF-467F-8B60-410D0183EBC0.jpg" 
+                   alt="사골국 식판식" 
+                   onerror="handleImageError(this, 'sago_soup')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 평일 아침</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">속 편한 한 그릇</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">사골국과 비엔나 한 상</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">뽀얀 사골국에 고소한 비엔나소세지, 감칠맛 도는 명란젓과 무말랭이, 상큼하게 버무려낸 봄동겉절이의 든든한 일상 조합.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">15</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 (김치찌개, 두부구이) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-honbab-2" class="w-full h-full">
+              <img src="554C1529-5EDD-49BA-87CC-3FC6DFD76CC4.jpg" 
+                   alt="김치찌개와 두부구이" 
+                   onerror="handleImageError(this, 'kimchi_soup')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 평일 퇴근 후</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">언제나 정석</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">돼지고기 김치찌개와 두부구이</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">푹 끓여낸 칼칼한 김치찌개와 들기름에 노릇하게 지져낸 두부구이. 가장 자주 차려 먹는 익숙한 밥상.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">22</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 (육개장, 잡채, 부추전) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-honbab-3" class="w-full h-full">
+              <img src="5F68BADA-6240-45F8-A2FD-3AF57E5D4532.jpg" 
+                   alt="육개장, 잡채, 부추전" 
+                   onerror="handleImageError(this, 'yukgaejang')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 주말 특식</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">기력 보충</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">육개장과 노릇한 부추전</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">얼큰하게 끓여낸 육개장 국물에 달콤 짭조름한 잡채, 겉바속촉 바삭하게 구워낸 부추전으로 알차게 채운 든든한 주말 한 상.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">31</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+<!-- Shared Card 4 (수육과 김장김치) - NEW 4th Card to avoid empty slots -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group animate-in fade-in duration-300">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-party-4" class="w-full h-full">
+              <img src="FD78108D-0C5C-4C20-9390-D0196B43F1EB.jpg" 
+                   alt="수육과 김장김치 한 상" 
+                   onerror="handleImageError(this, 'suyuk')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm font-semibold">📍 주말 힐링</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">편안한 휴식</span>
+              </div>
+              <h3 class="text-base font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-1.5 font-hand">야들야들 수육과 막걸리</h3>
+              <p class="text-xs text-gray-500 leading-relaxed font-light">두툼하게 썰어낸 수육에 아삭아삭 갓 담근 싱싱한 김장김치, 막걸리를 곁들여 완벽한 주말 한때를 완성한 보상형 한상.</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-warmBeige-dark flex items-center justify-between text-[11px] text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">35</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider 3 -->
+  <div class="w-full overflow-hidden leading-none bg-warmBeige">
+    <svg class="relative block w-full h-[40px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,53.05,22,81.13,32.33,143.12,55,207.13,67.66,273.13,67.66A290.15,290.15,0,0,0,321.39,56.44Z" fill="#F5EBE6"></path>
+    </svg>
+  </div>
+
+  <!-- Together Section: 함께하는 식탁 -->
+  <section id="together" class="py-20">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-tomatoRed text-xs font-bold uppercase tracking-wider font-hand">홈파티 앨범</span>
+        <h2 class="text-3xl font-extrabold text-charcoal mt-2 mb-3 font-hand">🥂 같이 나누는 식탁</h2>
+        <p class="text-gray-600 text-sm md:text-base">
+          가끔 친구들이나 지인들이 놀러 왔을 때의 기록. 정성껏 만든 전골이나 쫀득하게 삶아낸 고기 요리를 두고 둘러앉았던 편안한 시간들
+        </p>
+      </div>
+
+      <!-- Grid Cards for shared eating -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Shared Card 1 (냉제육, 오징어초무침과 납작만두, 부대찌개, 묵사발) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-party-1" class="w-full h-full">
+              <img src="DB194D14-BC9A-4FDF-B14E-D9B3E5250A3A.jpg" 
+                   alt="냉제육과 오징어초무침 한 상" 
+                   onerror="handleImageError(this, 'pork_squid')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 푸짐한 한 상</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">정성 가득 술상</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">냉제육과 오징어초무침</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">직접 삶아내어 얇고 쫀득하게 썰어둔 냉제육에 매콤새콤 아삭한 오징어초무침, 바삭 고소한 납작만두와 부대찌개, 묵사발 조합의 상다리 부러지는 한상.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">42</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shared Card 2 (생새우회, 묵은지말이, 육회) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-party-2" class="w-full h-full">
+              <img src="5D8D7DA5-76BF-4E25-80FA-7599A05ABEAB.jpg" 
+                   alt="생새우회, 묵은지말이, 육회" 
+                   onerror="handleImageError(this, 'raw_shrimp')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 홈 이자카야</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">날것의 즐거움</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">생새우회와 반반 육회</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">탱글탱글 신선한 생새우회와 버터 향 가득한 머리 구이, 고소하고 든든한 묵은지말이 김밥에 두 가지 양념으로 조물조물 무쳐낸 육회 한 접시.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">38</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shared Card 3 (아롱사태전골, 안키모김밥, 참치회) -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-party-3" class="w-full h-full">
+              <img src="29CC7066-EA71-4840-A6DB-DF94AF064667.jpg" 
+                   alt="아롱사태전골, 안키모김밥, 참치회" 
+                   onerror="handleImageError(this, 'beef_pot')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm font-semibold">📍 특별 대접</span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">미식 파티</span>
+              </div>
+              <h3 class="text-lg font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-2 font-hand">아롱사태전골과 안키모김밥</h3>
+              <p class="text-sm text-gray-500 leading-relaxed font-light">정성 들여 푹 고아낸 아롱사태 전골에 부드럽고 녹진한 맛이 예술인 안키모김밥, 입에서 사르르 녹아내리는 붉은빛 가득 참치회 조합.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-warmBeige-dark flex items-center justify-between text-xs text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">49</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 (삼계탕) - NEW 4th Card to avoid empty slots -->
+        <div class="bg-white rounded-3xl overflow-hidden border border-warmBeige-dark shadow-md hover:shadow-xl transition-all duration-300 flex flex-col group animate-in fade-in duration-300">
+          <div class="relative overflow-hidden aspect-[4/3] bg-warmBeige-light">
+            <div id="image-container-honbab-4" class="w-full h-full">
+              <img src="938CF973-3E77-4318-9D03-50FFA9689296.jpg" 
+                   alt="삼계탕 한 상" 
+                   onerror="handleImageError(this, 'samgyetang')"
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <span class="absolute top-4 left-4 bg-black/60 text-white text-[11px] px-2.5 py-1 rounded-full backdrop-blur-sm font-semibold">📍 복날의 위로</span>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-2 mb-2 text-xs text-tomatoRed font-bold">
+                <span class="bg-tomatoRed/10 px-2 py-0.5 rounded-md">기력 보충</span>
+              </div>
+              <h3 class="text-base font-bold text-charcoal group-hover:text-tomatoRed transition-colors mb-1.5 font-hand">든든하게 끓여낸 삼계탕</h3>
+              <p class="text-xs text-gray-500 leading-relaxed font-light">속이 뜨끈하게 풀어지는 무쇠솥 누룽지 삼계탕에 깨소금과 장아찌를 곁들여 확실하게 챙기는 복날 식탁.</p>
+            </div>
+            <div class="pt-4 mt-4 border-t border-warmBeige-dark flex items-center justify-between text-[11px] text-gray-400">
+              <span>⏱️ 기록 완료</span>
+              <button onclick="toggleLike(this)" class="flex items-center gap-1 hover:text-tomatoRed font-semibold transition-colors">
+                <i class="far fa-heart"></i> 좋아요 <span class="like-count">28</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Divider 4 -->
+  <div class="w-full overflow-hidden leading-none bg-warmBeige-light">
+    <svg class="relative block w-full h-[40px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C26.9,8.75,53.05,22,81.13,32.33,143.12,55,207.13,67.66,273.13,67.66A290.15,290.15,0,0,0,321.39,56.44Z" fill="#F5EBE6"></path>
+    </svg>
+  </div>
+
+  <!-- Strengths / Brand Values (강점 카드) -->
+  <section id="strength" class="py-20 bg-warmBeige-light">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-tomatoRed text-xs font-bold uppercase tracking-wider font-hand">기록의 가치</span>
+        <h2 class="text-3xl font-extrabold text-charcoal mt-2 mb-4 font-hand">✨ 식탁을 기록하는 이유</h2>
+        <p class="text-gray-600 text-sm md:text-base">
+          잘 챙겨 먹는 하루는 건강한 삶의 시작. 꾸밈없는 기록이 주는 세 가지 긍정적인 힘
+        </p>
+      </div>
+
+      <!-- Strength Cards Grid -->
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white p-8 rounded-3xl border border-warmBeige-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-tomatoRed-light rounded-2xl flex items-center justify-center text-tomatoRed text-xl mb-6">
+              <i class="fas fa-hand-holding-heart"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3 font-hand">꾸밈없는 솔직함</h3>
+            <p class="text-gray-500 text-sm leading-relaxed font-light">
+              지나치게 정돈된 인위적인 세팅 대신, 편안하고 든든한 진짜 현실 집밥을 통해 있는 그대로 소통하고 편안한 공감 나누기
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-warmBeige-dark text-xs text-tomatoRed font-bold">
+            #인간미 #무심함 #공감식탁
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white p-8 rounded-3xl border border-warmBeige-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600 text-xl mb-6">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3 font-hand">제철 챙기기</h3>
+            <p class="text-gray-500 text-sm leading-relaxed font-light">
+              봄철 향긋한 봄동 무침처럼 그때그때 나오는 정직하고 신선한 제철 재료들을 가볍게 요리해 건강하게 하루 챙겨 먹기
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-warmBeige-dark text-xs text-teal-600 font-bold">
+            #제철재료 #소박한요리 #하루챙기기
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white p-8 rounded-3xl border border-warmBeige-dark shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 bg-amber-50 rounded-2xl flex items-center justify-center text-amber-600 text-xl mb-6">
+              <i class="fas fa-comments"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3 font-hand">가벼운 소통</h3>
+            <p class="text-gray-500 text-sm leading-relaxed font-light">
+              따뜻하게 챙겨 먹는 소소한 일상 밥상 기록을 매개 삼아, 주변 동료들이나 아끼는 지인들과 부담 없이 무던하게 대화 잇기
+            </p>
+          </div>
+          <div class="pt-6 mt-6 border-t border-warmBeige-dark text-xs text-amber-600 font-bold">
+            #일상소통 #편안함 #식탁공유
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Guestbook (방명록) Section -->
+  <section id="guestbook" class="py-20">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-tomatoRed text-xs font-bold uppercase tracking-wider font-hand">기록 남기기</span>
+        <h2 class="text-3xl font-extrabold text-charcoal mt-2 mb-4 font-hand">💌 도란도란 따뜻한 방명록</h2>
+        <p class="text-gray-600 text-sm">
+          당신의 오늘 저녁 메뉴는 무엇이었나요? 편안하게 짧은 한 줄 자유롭게 적어두기
+        </p>
+      </div>
+
+      <!-- Write Guestbook form -->
+      <form id="commentForm" onsubmit="addComment(event)" class="bg-white p-6 md:p-8 rounded-3xl border border-warmBeige-dark shadow-md space-y-4 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-600 mb-1">이름 또는 닉네임</label>
+            <input type="text" id="commenterName" required placeholder="예: 초보독립러" class="w-full bg-warmBeige-light border border-warmBeige-dark px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-tomatoRed transition-colors">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-600 mb-1">오늘 나의 기분 숟가락</label>
+            <select id="commenterMood" class="w-full bg-warmBeige-light border border-warmBeige-dark px-4 py-2.5 rounded-xl text-sm focus:outline-none focus:border-tomatoRed transition-colors">
+              <option value="🥄 배고픔 스푼">🥄 배고픔 스푼</option>
+              <option value="🍲 따뜻함 한그릇" selected>🍲 따뜻함 한그릇</option>
+              <option value="🍺 유쾌함 한잔">🍺 유쾌함 한잔</option>
+              <option value="🥬 신선함 충전">🥬 신선함 충전</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-600 mb-1">방명록 내용</label>
+          <textarea id="commentContent" rows="3" required placeholder="남기고 싶은 소소하고 편안한 한마디 적어두기" class="w-full bg-warmBeige-light border border-warmBeige-dark px-4 py-3 rounded-xl text-sm focus:outline-none focus:border-tomatoRed transition-colors"></textarea>
+        </div>
+        <div class="flex justify-end">
+          <button type="submit" class="bg-tomatoRed hover:bg-tomatoRed-dark text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all shadow hover:shadow-md">
+            ✍️ 이야기 남기기
+          </button>
+        </div>
+      </form>
+
+      <!-- Comments List -->
+      <div id="comments-container" class="space-y-4">
+        <!-- Mock Comment 1 -->
+        <div class="bg-white/80 p-5 rounded-2xl border border-warmBeige-dark flex flex-col md:flex-row gap-4 justify-between items-start">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-charcoal font-hand">동네 주민</span>
+              <span class="text-xs bg-tomatoRed-light text-tomatoRed font-bold px-2 py-0.5 rounded-md">🍲 따뜻함 한그릇</span>
+            </div>
+            <p class="text-sm text-gray-600">김치찌개에 두부부침 조합 진짜 맛있어 보임. 오늘 메뉴 당첨.</p>
+          </div>
+          <span class="text-xs text-gray-400 self-end md:self-auto">2026.07.13</span>
+        </div>
+        <!-- Mock Comment 2 -->
+        <div class="bg-white/80 p-5 rounded-2xl border border-warmBeige-dark flex flex-col md:flex-row gap-4 justify-between items-start">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-charcoal font-hand">단골손님</span>
+              <span class="text-xs bg-amber-100 text-amber-700 font-bold px-2 py-0.5 rounded-md">🍺 유쾌함 한잔</span>
+            </div>
+            <p class="text-sm text-gray-600">아롱사태 전골 비주얼 완벽함. 편안하고 솔직하게 기록하는 식탁 이야기 잘 보고 가기.</p>
+          </div>
+          <span class="text-xs text-gray-400 self-end md:self-auto">2026.07.12</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Outro Section (인스타그램 연결) -->
+  <section id="outro" class="py-24 bg-gradient-to-b from-[#F5EBE6] to-[#EADCD3] text-center relative overflow-hidden">
+    <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-tomatoRed/5 blur-lg"></div>
+    <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-tomatoRed/5 blur-lg"></div>
+
+    <div class="max-w-2xl mx-auto px-4 relative z-10 space-y-6">
+      <span class="text-tomatoRed text-xs font-bold uppercase tracking-wider font-hand">실시간 이야기</span>
+      <h2 class="text-3xl md:text-5xl font-extrabold text-charcoal font-hand leading-tight">
+        인스타그램에서도 보기
+      </h2>
+      <p class="text-gray-600 text-sm md:text-base max-w-lg mx-auto leading-relaxed">
+        매일 챙겨 먹는 소소한 메뉴와 더 다양한 메뉴는 인스타그램에 조금 더 자주 올라오는 편. 구경오세요
+      </p>
+
+      <div class="pt-4">
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+          <a href="https://instagram.com/yam._.nyam" target="_blank" class="w-full sm:w-auto bg-tomatoRed hover:bg-tomatoRed-dark text-white font-bold px-8 py-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+            <i class="fab fa-instagram text-xl"></i> @yam._.nyam 팔로우하기
+          </a>
+          <button onclick="copyInstagramLink()" class="w-full sm:w-auto bg-white hover:bg-warmBeige-light text-gray-700 border border-warmBeige-dark font-bold px-6 py-4 rounded-2xl transition-all flex items-center justify-center gap-2 text-sm">
+            <i class="far fa-copy"></i> 계정 주소 복사
+          </button>
+        </div>
+        <p id="copyToast" class="text-xs text-tomatoRed font-bold mt-3 opacity-0 transition-opacity duration-300">인스타그램 주소 복사 완료 📋</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Alert Toast Notification -->
+  <div id="customToast" class="fixed bottom-6 right-6 bg-charcoal text-white text-sm px-5 py-3.5 rounded-2xl shadow-2xl z-50 transform translate-y-20 opacity-0 transition-all duration-300 flex items-center gap-3 font-medium">
+    <span class="text-xl text-tomatoRed">🍳</span>
+    <span id="toastMessage">처리 완료</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-charcoal text-warmBeige border-t border-gray-800 py-12">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left space-y-2">
+        <div class="text-xl font-bold font-hand text-tomatoRed flex items-center justify-center md:justify-start gap-2">
+          <span>🍳</span> 독립러의 밥상
+        </div>
+        <p class="text-xs text-gray-400">대충 때우지 않고 든든하게 챙겨 먹는 1인분 식탁 일기장</p>
+      </div>
+      
+      <div class="flex flex-wrap justify-center gap-6 text-xs text-gray-400 font-medium">
+        <a href="#intro" class="hover:text-tomatoRed transition-colors">소개</a>
+        <a href="#gallery" class="hover:text-tomatoRed transition-colors">혼자 먹는 밥상</a>
+        <a href="#together" class="hover:text-tomatoRed transition-colors">같이 나누는 식탁</a>
+        <a href="#strength" class="hover:text-tomatoRed transition-colors">기록의 가치</a>
+        <a href="#guestbook" class="hover:text-tomatoRed transition-colors">방명록</a>
+      </div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-4 mt-8 pt-8 border-t border-gray-800 text-center text-xxs text-gray-500">
+      <p>&copy; 2026 독립러의 밥상. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Toast Notification Utility
+    function showToast(message) {
+      const toast = document.getElementById('customToast');
+      const toastText = document.getElementById('toastMessage');
+      toastText.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    // Toggle Likes on Cards
+    function toggleLike(button) {
+      const icon = button.querySelector('i');
+      const countSpan = button.querySelector('.like-count');
+      let count = parseInt(countSpan.innerText);
+
+      if (icon.classList.contains('far')) {
+        icon.classList.remove('far');
+        icon.classList.add('fas', 'text-tomatoRed');
+        countSpan.innerText = count + 1;
+        showToast("좋아요 표시 완료 ❤️");
+      } else {
+        icon.classList.remove('fas', 'text-tomatoRed');
+        icon.classList.add('far');
+        countSpan.innerText = count - 1;
+      }
+    }
+
+    // Copy Instagram Link
+    function copyInstagramLink() {
+      const dummyInput = document.createElement('input');
+      dummyInput.value = "https://instagram.com/my.bob_table";
+      document.body.appendChild(dummyInput);
+      dummyInput.select();
+      try {
+        document.execCommand('copy');
+        const toast = document.getElementById('copyToast');
+        toast.classList.remove('opacity-0');
+        setTimeout(() => {
+          toast.classList.add('opacity-0');
+        }, 2000);
+      } catch (err) {
+        showToast("주소 복사 실패");
+      }
+      document.body.removeChild(dummyInput);
+    }
+
+    // Comment Form Action
+    function addComment(e) {
+      e.preventDefault();
+      const commenterName = document.getElementById('commenterName').value;
+      const commenterMood = document.getElementById('commenterMood').value;
+      const commentContent = document.getElementById('commentContent').value;
+      const commentsContainer = document.getElementById('comments-container');
+
+      const today = new Date();
+      const formattedDate = `${today.getFullYear()}.${String(today.getMonth() + 1).padStart(2, '0')}.${String(today.getDate()).padStart(2, '0')}`;
+
+      const commentHTML = `
+        <div class="bg-white/80 p-5 rounded-2xl border border-warmBeige-dark flex flex-col md:flex-row gap-4 justify-between items-start animate-in fade-in slide-in-from-bottom duration-300">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-charcoal font-hand">${commenterName}</span>
+              <span class="text-xs bg-tomatoRed-light text-tomatoRed font-bold px-2 py-0.5 rounded-md">${commenterMood}</span>
+            </div>
+            <p class="text-sm text-gray-600">${commentContent}</p>
+          </div>
+          <span class="text-xs text-gray-400 self-end md:self-auto">${formattedDate}</span>
+        </div>
+      `;
+
+      commentsContainer.insertAdjacentHTML('afterbegin', commentHTML);
+      showToast("방명록 등록 완료 💌");
+      document.getElementById('commentForm').reset();
+    }
+
+    // Dynamic Fallback Generator: Triggers vector design if the primary src fails to load (e.g., sandbox restrictions)
+    function handleImageError(imgElement, dishType) {
+      const parent = imgElement.parentElement;
+      const fallbackContainer = document.createElement('div');
+      fallbackContainer.className = "w-full h-full bg-[#FCF8F5] flex flex-col items-center justify-center p-4 border border-warmBeige/50 select-none";
+      
+      let svgContent = '';
+      if (dishType === 'sago_soup') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="75" r="45" fill="#EADCD3" />
+            <circle cx="100" cy="75" r="38" fill="#FFFFFF" />
+            <ellipse cx="100" cy="75" rx="30" ry="25" fill="#FAF6F4" />
+            <line x1="60" y1="110" x2="140" y2="110" stroke="#78350F" stroke-width="3" stroke-linecap="round" />
+            <circle cx="65" cy="50" r="10" fill="#EF4444" opacity="0.8" />
+          </svg>`;
+      } else if (dishType === 'kimchi_soup') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="85" r="45" fill="#E8DCD5" />
+            <circle cx="100" cy="85" r="38" fill="#FFFFFF" />
+            <circle cx="100" cy="85" r="32" fill="#E05A47" />
+            <rect x="75" y="75" width="22" height="12" rx="3" fill="#FAF6F4" transform="rotate(-15, 75, 75)" />
+            <rect x="105" y="70" width="22" height="12" rx="3" fill="#FAF6F4" transform="rotate(10, 105, 70)" />
+            <line x1="85" y1="95" x2="115" y2="95" stroke="#10B981" stroke-width="4" stroke-linecap="round" />
+          </svg>`;
+      } else if (dishType === 'yukgaejang') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="80" cy="80" r="42" fill="#C84634" />
+            <circle cx="80" cy="80" r="36" fill="#E05A47" />
+            <path d="M 60 70 Q 80 85 100 70" stroke="#B45309" stroke-width="4" fill="none" />
+            <rect x="130" y="50" width="45" height="35" rx="5" fill="#FBBF24" opacity="0.9" />
+            <line x1="135" y1="67" x2="170" y2="67" stroke="#FAF6F4" stroke-width="3" />
+          </svg>`;
+      } else if (dishType === 'pork_squid') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="20" width="160" height="110" rx="15" fill="#EADCD3" />
+            <rect x="35" y="35" width="60" height="40" rx="8" fill="#FAF6F4" />
+            <rect x="105" y="35" width="60" height="40" rx="8" fill="#FAF6F4" />
+            <ellipse cx="65" cy="55" rx="20" ry="10" fill="#E05A47" />
+            <ellipse cx="135" cy="55" rx="20" ry="10" fill="#FFFFFF" />
+          </svg>`;
+      } else if (dishType === 'raw_shrimp') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="75" r="45" fill="#FFFFFF" stroke="#EADCD3" stroke-width="2" />
+            <path d="M 75 60 A 15 15 0 0 1 105 50" stroke="#94A3B8" stroke-width="5" stroke-linecap="round" fill="none" />
+            <path d="M 110 55 A 15 15 0 0 1 125 75" stroke="#94A3B8" stroke-width="5" stroke-linecap="round" fill="none" />
+            <circle cx="100" cy="100" r="15" fill="#EF4444" opacity="0.9" />
+          </svg>`;
+      } else if (dishType === 'beef_pot') {
+        svgContent = `
+          <svg viewBox="0 0 200 150" class="w-full h-full max-h-40" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="75" r="42" fill="#78350F" />
+            <circle cx="100" cy="75" r="38" fill="#92400E" />
+            <circle cx="85" cy="65" r="10" fill="#451A03" />
+            <line x1="85" y1="55" x2="85" y2="75" stroke="#FAF6F4" stroke-width="2" />
+            <line x1="75" y1="65" x2="95" y2="65" stroke="#FAF6F4" stroke-width="2" />
+          </svg>`;
+      }
+
+      fallbackContainer.innerHTML = `
+        ${svgContent}
+        <span class="text-[11px] text-gray-400 mt-2 font-hand">로컬 전용 밥상 사진 로드 대기 중</span>
+      `;
+      imgElement.replaceWith(fallbackContainer);
+    }
+  </script>
+</body>
+</html>
