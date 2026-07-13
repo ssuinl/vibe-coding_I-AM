@@ -73,26 +73,43 @@
 </head>
 <body class="selection:bg-tomatoRed selection:text-white">
 
-  <!-- Navigation Bar -->
-  <nav class="sticky top-0 z-50 bg-warmBeige/90 backdrop-blur-md border-b border-warmBeige-dark transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2 text-tomatoRed font-bold text-lg md:text-xl font-hand">
-        <span class="text-2xl">🍳</span> 독립러의 밥상
-      </a>
-      <div class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-700">
-        <a href="#intro" class="hover:text-tomatoRed transition-colors">소개</a>
-        <a href="#gallery" class="hover:text-tomatoRed transition-colors">혼자 먹는 밥상</a>
-        <a href="#together" class="hover:text-tomatoRed transition-colors">같이 나누는 식탁</a>
-        <a href="#strength" class="hover:text-tomatoRed transition-colors">식탁 기록 이유</a>
-        <a href="#guestbook" class="hover:text-tomatoRed transition-colors">방명록</a>
-      </div>
-      <div>
-        <a href="#outro" class="bg-tomatoRed hover:bg-tomatoRed-dark text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all shadow-md inline-flex items-center gap-1.5">
-          <i class="fab fa-instagram"></i> 인스타그램
-        </a>
-      </div>
+ <!-- Navigation Bar -->
+<nav class="sticky top-0 z-50 bg-warmBeige/90 backdrop-blur-md border-b border-warmBeige-dark transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 text-tomatoRed font-bold text-lg md:text-xl font-hand">
+      <span class="text-2xl">🍳</span> 독립러의 밥상
+    </a>
+    
+    <!-- PC 데스크톱 메뉴 (hidden md:flex) -->
+    <div class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-700">
+      <a href="#intro" class="hover:text-tomatoRed transition-colors">소개</a>
+      <a href="#gallery" class="hover:text-tomatoRed transition-colors">혼자 먹는 밥상</a>
+      <a href="#together" class="hover:text-tomatoRed transition-colors">같이 나누는 식탁</a>
+      <a href="#strength" class="hover:text-tomatoRed transition-colors">식탁 기록 이유</a>
+      <a href="#guestbook" class="hover:text-tomatoRed transition-colors">방명록</a>
     </div>
-  </nav>
+
+    <!-- 우측 버튼 및 모바일 햄버거 토글러 -->
+    <div class="flex items-center gap-4">
+      <a href="#outro" class="bg-tomatoRed hover:bg-tomatoRed-dark text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all shadow-md inline-flex items-center gap-1.5 min-h-[44px]">
+        <i class="fab fa-instagram"></i> <span class="hidden sm:inline">인스타그램</span>
+      </a>
+      <!-- 모바일 햄버거 버튼 (md:hidden) -->
+      <button id="menuToggle" class="md:hidden text-charcoal text-xl p-2 focus:outline-none min-h-[44px] flex items-center justify-center" aria-label="메뉴 열기">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 모바일 전용 드롭다운 메뉴창 (기본값 hidden) -->
+  <div id="mobileMenu" class="hidden md:hidden bg-warmBeige/95 backdrop-blur-md border-b border-warmBeige-dark px-6 py-4 space-y-3 transition-all duration-300">
+    <a href="#intro" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">소개</a>
+    <a href="#gallery" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">혼자 먹는 밥상</a>
+    <a href="#together" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">같이 나누는 식탁</a>
+    <a href="#strength" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">식탁 기록 이유</a>
+    <a href="#guestbook" class="mobile-link block text-gray-700 font-medium hover:text-tomatoRed py-2">방명록</a>
+  </div>
+</nav>
 
   <!-- Hero Section -->
   <header id="intro" class="relative overflow-hidden pt-12 pb-20 md:py-32 flex items-center justify-center">
@@ -768,6 +785,39 @@
       `;
       imgElement.replaceWith(fallbackContainer);
     }
+      // 모바일 내비게이션 토글 제어 스크립트
+document.addEventListener('DOMContentLoaded', () => {
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuIcon = menuToggle.querySelector('i');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  // 햄버거 버튼 클릭 시 메뉴 토글
+  menuToggle.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      menuIcon.classList.remove('fa-bars');
+      menuIcon.classList.add('fa-times'); // 엑스(X) 모양으로 아이콘 변경
+    } else {
+      mobileMenu.classList.add('hidden');
+      menuIcon.classList.remove('fa-times');
+      menuIcon.classList.add('fa-bars'); // 삼선(☰) 모양으로 원복
+    }
+  });
+
+  // 모바일 메뉴 링크 클릭 시 자동으로 메뉴창 닫기
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuIcon.classList.remove('fa-times');
+      menuIcon.classList.add('fa-bars');
+    });
+  });
+});
   </script>
+</body>
+<body class="selection:bg-tomatoRed selection:text-white overflow-x-hidden">
 </body>
 </html>
